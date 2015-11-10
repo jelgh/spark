@@ -373,6 +373,7 @@
         <artifactId>maven-shade-plugin</artifactId>
         <executions>
           <execution>
+            <id>guava</id>
             <phase>package</phase>
             <goals>
               <goal>shade</goal>
@@ -395,6 +396,26 @@
                   </includes>
                 </filter>
               </filters>
+            </configuration>
+          </execution>
+          <execution>
+            <id>jetty</id>
+            <phase>package</phase>
+            <goals>
+              <goal>shade</goal>
+            </goals>
+            <configuration>
+              <artifactSet>
+                <includes>
+                  <include>org.eclipse.jetty:*</include>
+                </includes>
+              </artifactSet>
+              <relocations>
+                <relocation>
+                  <pattern>org.eclipse.jetty</pattern>
+                  <shadedPattern>se.tink.org.eclipse.jetty</shadedPattern>
+                </relocation>
+              </relocations>
             </configuration>
           </execution>
         </executions>
